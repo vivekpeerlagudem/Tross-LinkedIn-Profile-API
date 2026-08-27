@@ -2,7 +2,7 @@
 
 A production-grade, modular REST API built with **FastAPI**, **Pydantic v2**, and **HTTPX** that accepts a LinkedIn profile URL, retrieves profile data via an isolated provider layer, and returns comprehensive structured JSON with rich metadata.
 
-> **Engineering Note**: The direct HTTP provider is implemented using `httpx.AsyncClient` (strictly avoiding browser automation), while empirical testing demonstrated that LinkedIn's current gateway/authentication behavior prevents reliable unauthenticated or static-session retrieval. The application therefore defaults to a deterministic mock provider (`DATA_PROVIDER=mock`) while preserving the isolated direct HTTP provider and thoroughly documenting the investigation.
+> **Engineering Note**: Live LinkedIn direct-HTTP retrieval remains experimentally unverified after controlled tests returned HTTP 400 and HTTP 302. The direct HTTP provider is implemented using `httpx.AsyncClient` (strictly avoiding browser automation). The application defaults to a deterministic mock provider (`DATA_PROVIDER=mock`) while preserving the isolated direct HTTP provider and thoroughly documenting the reverse-engineering investigation.
 
 ---
 
@@ -235,3 +235,20 @@ docker run -p 8000:8000 --env DATA_PROVIDER=mock tross-linkedin-api
 | `sam-taylor-ai` | Minimal profile (Profile info and skills only) |
 | `not-found-user` | Triggers a 404 `PROFILE_NOT_FOUND` error |
 | *(Any other valid vanity ID)* | Dynamically generates a valid synthetic developer profile |
+
+---
+
+## Deployment Instructions
+
+The application is containerized and ready for 1-click deployment to public hosting platforms (e.g., Render, Railway, Fly.io):
+
+1. **Deploy to Render as a Web Service**:
+   - Link the public GitHub repository: `https://github.com/vivekpeerlagudem/Tross-LinkedIn-Profile-API`.
+   - Select **Docker** environment (Render automatically builds the multi-stage `Dockerfile`).
+   - Set environment variable: `DATA_PROVIDER=mock` (default safe mode).
+   - Port: `8000`.
+
+2. **Verify Public Endpoints**:
+   - Health check: `GET https://<your-app>.onrender.com/health`
+   - Interactive Swagger docs: `GET https://<your-app>.onrender.com/docs`
+   - Query endpoint: `POST https://<your-app>.onrender.com/v1/profile` with `{"url": "https://www.linkedin.com/in/alex-morgan-dev"}`
