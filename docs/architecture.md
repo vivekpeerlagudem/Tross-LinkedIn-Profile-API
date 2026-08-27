@@ -11,29 +11,30 @@ The architecture adheres to the **Clean Architecture / Hexagonal Architecture** 
 
 ```mermaid
 flowchart TD
-    Client[HTTP Client / Evaluator] -->|POST /v1/profile| Router[FastAPI Router]
+    Client["HTTP Client / Evaluator"] --> Router["FastAPI Router"]
     
-    subgraph Routing & Guard Layer
-        Router --> URLValidator[URL Validator & SSRF Guard]
-        URLValidator -->|Validated Vanity ID| ProfileService[Profile Service]
+    subgraph Security["Security and Routing"]
+        Router --> Validator["URL Validator and SSRF Guard"]
+        Validator --> Service["Profile Service"]
     end
-    
-    subgraph Provider Abstraction Layer
-        ProfileService --> ProviderFactory[ProfileDataProvider Factory]
-        ProviderFactory -->|DATA_PROVIDER=mock| MockProvider[Mock Profile Provider]
-        ProviderFactory -.->|DATA_PROVIDER=candidate| CandidateProvider[Candidate Live Provider (Hypothesis/Under Research)]
+
+    subgraph Providers["Provider Abstraction"]
+        Service --> Factory["ProfileDataProvider Factory"]
+        Factory --> Mock["Mock Profile Provider"]
+        Factory -.-> Live["Candidate Live Provider"]
     end
-    
-    subgraph Processing & Domain Layer
-        MockProvider --> RawData[Raw Dict Payload]
-        CandidateProvider --> RawData
-        RawData --> Parser[Profile Parser]
-        Parser --> Normalizer[Profile Normalizer]
-        Normalizer --> ResponseModels[Pydantic Models]
+
+    subgraph Processing["Parsing and Normalization"]
+        Mock --> Raw["Raw Payload"]
+        Live --> Raw
+        Raw --> Parser["Profile Parser"]
+        Parser --> Normalizer["Profile Normalizer"]
+        Normalizer --> Models["Pydantic Models"]
     end
-    
-    ResponseModels --> Router
-    Router -->|JSON Response| Client
+
+    Models --> Router
+    Router --> Response["Structured JSON Response"]
+    Response --> Client
 ```
 
 ---

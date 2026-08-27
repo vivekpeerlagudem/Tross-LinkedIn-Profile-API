@@ -23,29 +23,30 @@ A production-grade, modular REST API built with **FastAPI**, **Pydantic v2**, an
 
 ```mermaid
 flowchart TD
-    Client[HTTP Client / Evaluator] -->|POST /v1/profile| FastAPIRouter[FastAPI Router]
+    Client["HTTP Client / Evaluator"] --> Router["FastAPI Router"]
     
-    subgraph Security & Routing
-        FastAPIRouter --> URLValidator[URL Validator & SSRF Guard]
-        URLValidator -->|Validated Vanity ID| ProfileService[Profile Service]
+    subgraph Security["Security and Routing"]
+        Router --> Validator["URL Validator and SSRF Guard"]
+        Validator --> Service["Profile Service"]
     end
-    
-    subgraph Provider Abstraction
-        ProfileService --> ProviderFactory[ProfileDataProvider Factory]
-        ProviderFactory -->|DATA_PROVIDER=mock| MockProvider[Mock Profile Provider]
-        ProviderFactory -.->|DATA_PROVIDER=candidate| CandidateProvider[Candidate Live Provider (Under Research)]
+
+    subgraph Providers["Provider Abstraction"]
+        Service --> Factory["ProfileDataProvider Factory"]
+        Factory --> Mock["Mock Profile Provider"]
+        Factory -.-> Live["Candidate Live Provider"]
     end
-    
-    subgraph Parsing & Normalization
-        MockProvider --> RawPayload[Raw Payload]
-        CandidateProvider --> RawPayload
-        RawPayload --> ProfileParser[Profile Parser]
-        ProfileParser --> ProfileNormalizer[Profile Normalizer]
-        ProfileNormalizer --> PydanticModels[Pydantic Models]
+
+    subgraph Processing["Parsing and Normalization"]
+        Mock --> Raw["Raw Payload"]
+        Live --> Raw
+        Raw --> Parser["Profile Parser"]
+        Parser --> Normalizer["Profile Normalizer"]
+        Normalizer --> Models["Pydantic Models"]
     end
-    
-    PydanticModels --> FastAPIRouter
-    FastAPIRouter -->|Structured JSON Response| Client
+
+    Models --> Router
+    Router --> Response["Structured JSON Response"]
+    Response --> Client
 ```
 
 For full details, see [`docs/architecture.md`](docs/architecture.md).
