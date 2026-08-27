@@ -1,0 +1,76 @@
+{
+  "profile": {
+    "public_id": "alex-morgan-dev",
+    "urn": "urn:li:synthetic_profile:1001",
+    "first_name": "Alex",
+    "last_name": "Morgan",
+    "full_name": "Alex Morgan",
+    "headline": "Lead Platform Engineer & Distributed Systems Architect",
+    "location": {
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "raw": "Austin, Texas, United States"
+    },
+    "about": "Passionate backend engineer with 8+ years experience architecting scalable distributed microservices, streaming pipelines, and resilient cloud architectures.",
+    "profile_picture_url": null,
+    "background_picture_url": null
+  },
+  "experience": [
+    {
+      "title": "Lead Platform Engineer",
+      "company": "Acme Cloud Infrastructure Corp",
+      "company_urn": "urn:li:synthetic_company:2001",
+      "location": "Austin, TX",
+      "start_date": { "year": 2022, "month": 3 },
+      "end_date": null,
+      "is_current": true,
+      "description": "Leading architecture for high-throughput event ingestion pipelines handling 50k requests/second.",
+      "employment_type": "Full-time"
+    },
+    {
+      "title": "Senior Software Engineer",
+      "company": "DataStream Solutions Inc",
+      "company_urn": "urn:li:synthetic_company:2002",
+      "location": "Dallas, TX",
+      "start_date": { "year": 2019, "month": 6 },
+      "end_date": { "year": 2022, "month": 2 },
+      "is_current": false,
+      "description": "Designed asynchronous REST APIs, optimized caching tiers, and maintained PostgreSQL partitions.",
+      "employment_type": "Full-time"
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Texas at Austin",
+      "school_urn": "urn:li:synthetic_school:3001",
+      "degree": "Bachelor of Science",
+      "field_of_study": "Computer Science",
+      "start_year": 2015,
+      "end_year": 2019,
+      "description": "Graduated Magna Cum Laude. Dean's Honor List all semesters.",
+      "activities": "Association for Computing Machinery (ACM), Competitive Programming Team"
+    }
+  ],
+  "skills": [
+    { "name": "Python", "endorsement_count": 48 },
+    { "name": "FastAPI", "endorsement_count": 39 },
+    { "name": "Distributed Systems", "endorsement_count": 31 },
+    { "name": "Docker", "endorsement_count": 27 },
+    { "name": "PostgreSQL", "endorsement_count": 22 }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Solutions Architect - Professional",
+      "authority": "Cloud Certification Authority",
+      "license_number": "CCA-PRO-984712",
+      "url": "https://credentials.synthetic-example.org/verify/984712",
+      "start_date": { "year": 2021, "month": 8 },
+      "end_date": { "year": 2024, "month": 8 }
+    }
+  ],
+  "languages": [
+    { "name": "English", "proficiency": "NATIVE_OR_BILINGUAL" },
+    { "name": "Spanish", "proficiency": "PROFESSIONAL_WORKING" }
+  ]
+}

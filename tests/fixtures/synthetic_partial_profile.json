@@ -1,0 +1,41 @@
+{
+  "profile": {
+    "public_id": "jordan-lee-tech",
+    "urn": "urn:li:synthetic_profile:1002",
+    "first_name": "Jordan",
+    "last_name": "Lee",
+    "full_name": "Jordan Lee",
+    "headline": "Full Stack Developer | Python & TypeScript",
+    "location": "Seattle, Washington",
+    "about": "Builder specializing in rapid prototyping and scalable web platforms.",
+    "profile_picture_url": null,
+    "background_picture_url": null
+  },
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "NextGen Web Apps LLC",
+      "location": "Seattle, WA",
+      "start_date": "2023-01",
+      "end_date": null,
+      "is_current": true,
+      "description": "Building interactive dashboards and backend APIs."
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Washington",
+      "degree": "B.S.",
+      "field_of_study": "Informatics",
+      "start_year": 2018,
+      "end_year": 2022
+    }
+  ],
+  "skills": [
+    { "name": "Python", "endorsement_count": 15 },
+    { "name": "TypeScript", "endorsement_count": 12 },
+    { "name": "React", "endorsement_count": 8 }
+  ],
+  "certifications": [],
+  "languages": []
+}

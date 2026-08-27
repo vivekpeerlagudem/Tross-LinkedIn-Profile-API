@@ -1,0 +1,22 @@
+{
+  "profile": {
+    "public_id": "sam-taylor-ai",
+    "urn": "urn:li:synthetic_profile:1003",
+    "first_name": "Sam",
+    "last_name": "Taylor",
+    "full_name": "Sam Taylor",
+    "headline": "AI Researcher & Enthusiast",
+    "location": null,
+    "about": "Exploring neural architectures and open-source models.",
+    "profile_picture_url": null,
+    "background_picture_url": null
+  },
+  "experience": [],
+  "education": [],
+  "skills": [
+    { "name": "Deep Learning", "endorsement_count": 5 },
+    { "name": "PyTorch", "endorsement_count": 4 }
+  ],
+  "certifications": [],
+  "languages": []
+}
