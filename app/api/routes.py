@@ -12,6 +12,27 @@ router = APIRouter()
 
 
 @router.get(
+    "/",
+    tags=["Root"],
+    summary="Root API Landing & Status",
+    description="Returns API service information, active configuration, and endpoint links.",
+    status_code=status.HTTP_200_OK,
+)
+async def root():
+    """Returns API service information and navigation links."""
+    return {
+        "name": settings.APP_NAME,
+        "version": settings.APP_VERSION,
+        "status": "healthy",
+        "provider": settings.DATA_PROVIDER.value,
+        "docs": "/docs",
+        "health": "/health",
+        "openapi": "/openapi.json",
+        "profile_endpoint": "/v1/profile",
+    }
+
+
+@router.get(
     "/health",
     tags=["Health"],
     summary="Health Check Probe",
